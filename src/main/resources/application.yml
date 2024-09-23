@@ -1,0 +1,37 @@
+spring:
+  application:
+    name: demo-quartz
+  output:
+    ansi:
+      enabled: always
+
+  datasource:
+    driver-class-name: com.mysql.cj.jdbc.Driver
+    url: jdbc:mysql://localhost:3306/demo_quartz?serverTimezone=Asia/Seoul
+    username: scott
+    password: scott
+
+  jpa:
+    hibernate:
+      ddl-auto: update
+    show-sql: true
+    properties:
+      hibernate:
+        jdbc:
+          time_zone: Asia/Seoul
+        format_sql: true
+        highlight_sql: true
+
+  quartz:
+    job-store-type: jdbc
+    jdbc:
+      initialize-schema: always
+      schema: classpath:org/quartz/impl/jdbcjobstore/tables_mysql_innodb.sql
+    properties:
+      org:
+        quartz:
+          scheduler:
+            instanceId: auto
+          jobStore:
+            useProperties: true
+            isClustered: true
